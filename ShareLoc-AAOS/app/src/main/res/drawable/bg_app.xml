@@ -1,4 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
-    <solid android:color="@color/skoda_light_grey" />
-</shape>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="315"
+                android:endColor="@color/skoda_emerald_deep"
+                android:startColor="@color/skoda_emerald"
+                android:type="linear" />
+        </shape>
+    </item>
+    <item
+        android:drawable="@drawable/bg_map_routes"
+        android:gravity="fill" />
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:centerColor="#00000000"
+                android:centerX="0.75"
+                android:centerY="0.2"
+                android:endColor="#00000000"
+                android:gradientRadius="900"
+                android:startColor="@color/skoda_electric_glow"
+                android:type="radial" />
+        </shape>
+    </item>
+</layer-list>

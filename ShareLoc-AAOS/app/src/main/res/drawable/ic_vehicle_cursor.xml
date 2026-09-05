@@ -1,0 +1,30 @@
+<!--
+    Heading cursor shown in the hero panel. Placeholder styled after the ShareLoc palette.
+    To use the production Škoda navigation cursor, replace this file (same name) with the
+    official asset supplied through the authorised brand source. Keep the arrow pointing up
+    (north) so the runtime rotation by GNSS bearing stays correct.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="96dp"
+    android:height="96dp"
+    android:viewportWidth="96"
+    android:viewportHeight="96">
+    <path
+        android:fillColor="#2678FAAE"
+        android:pathData="M48,48 m-40,0 a40,40 0,1 0,80 0 a40,40 0,1 0,-80 0z" />
+    <path
+        android:pathData="M48,48 m-40,0 a40,40 0,1 0,80 0 a40,40 0,1 0,-80 0z"
+        android:strokeColor="#78FAAE"
+        android:strokeWidth="1.5"
+        android:strokeAlpha="0.55" />
+    <path
+        android:fillColor="#071F19"
+        android:pathData="M48,14 L70,72 L48,60 L26,72 Z" />
+    <path
+        android:fillColor="#78FAAE"
+        android:pathData="M48,20 L65,67 L48,57.5 L31,67 Z" />
+    <path
+        android:fillColor="#0E3A2F"
+        android:pathData="M48,20 L48,57.5 L31,67 Z"
+        android:fillAlpha="0.35" />
+</vector>

@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="skoda_emerald">#0E3A2F</color>
+    <color name="skoda_emerald_deep">#071F19</color>
+    <color name="skoda_emerald_surface">#12463A</color>
+    <color name="skoda_emerald_line">#1F5A4A</color>
     <color name="skoda_electric">#78FAAE</color>
+    <color name="skoda_electric_dim">#3FBF7E</color>
+    <color name="skoda_electric_glow">#3378FAAE</color>
+    <color name="skoda_on_dark">#E8F3EE</color>
+    <color name="skoda_on_dark_muted">#9FBDB2</color>
     <color name="skoda_dark_grey">#394748</color>
     <color name="skoda_stone_grey">#6F797A</color>
     <color name="skoda_medium_grey">#CACECF</color>
@@ -10,5 +17,5 @@
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="status_warning">#E6A800</color>
-    <color name="status_error">#C62828</color>
+    <color name="status_error">#FF6B6B</color>
 </resources>

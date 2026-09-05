@@ -8,6 +8,7 @@ data class TrackingSnapshot(
     val latitude: Double?,
     val longitude: Double?,
     val speedKmh: Double?,
+    val bearing: Double?,
     val accuracyMeters: Double?,
     val source: String?,
     val lastUploadAt: Long?,
@@ -34,6 +35,7 @@ object TrackingStateStore {
             .putLong("lonBits", payload.longitude.toBits())
             .apply {
                 payload.speedKmh?.let { putLong("speedBits", it.toBits()) } ?: remove("speedBits")
+                payload.bearing?.let { putLong("bearingBits", it.toBits()) } ?: remove("bearingBits")
                 payload.accuracyMeters?.let { putLong("accuracyBits", it.toBits()) } ?: remove("accuracyBits")
             }
             .putString("source", payload.source)
@@ -65,6 +67,7 @@ object TrackingStateStore {
             latitude = p.getBitsOrNull("latBits"),
             longitude = p.getBitsOrNull("lonBits"),
             speedKmh = p.getBitsOrNull("speedBits"),
+            bearing = p.getBitsOrNull("bearingBits"),
             accuracyMeters = p.getBitsOrNull("accuracyBits"),
             source = p.getString("source", null),
             lastUploadAt = if (p.contains("lastUploadAt")) p.getLong("lastUploadAt", 0L) else null,
