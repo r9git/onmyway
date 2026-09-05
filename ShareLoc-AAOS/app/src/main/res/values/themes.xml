@@ -70,8 +70,8 @@
     <style name="ShareLoc.PrimaryButton" parent="Widget.Material3.Button">
         <item name="android:minHeight">64dp</item>
         <item name="cornerRadius">18dp</item>
-        <item name="backgroundTint">@color/skoda_electric</item>
-        <item name="android:textColor">@color/skoda_emerald_deep</item>
+        <item name="backgroundTint">@color/btn_primary_background</item>
+        <item name="android:textColor">@color/btn_primary_text</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">18sp</item>
         <item name="android:letterSpacing">0.02</item>
@@ -81,9 +81,9 @@
     <style name="ShareLoc.SecondaryButton" parent="Widget.Material3.Button.OutlinedButton">
         <item name="android:minHeight">54dp</item>
         <item name="cornerRadius">16dp</item>
-        <item name="strokeColor">@color/skoda_electric_dim</item>
+        <item name="strokeColor">@color/btn_secondary_stroke</item>
         <item name="strokeWidth">1.5dp</item>
-        <item name="android:textColor">@color/skoda_on_dark</item>
+        <item name="android:textColor">@color/btn_secondary_text</item>
         <item name="rippleColor">@color/skoda_electric_glow</item>
     </style>
 </resources>
