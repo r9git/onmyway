@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_app"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="28dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="22dp">
+
+            <ImageView
+                android:layout_width="58dp"
+                android:layout_height="58dp"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_shareloc_mark" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_name"
+                    android:textColor="@color/skoda_emerald"
+                    android:textSize="34sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_tagline"
+                    android:textColor="@color/skoda_stone_grey"
+                    android:textSize="17sp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/brand_footer"
+                android:textColor="@color/skoda_stone_grey"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/ShareLoc.Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:id="@+id/statusDot"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:background="@drawable/bg_status_dot_off" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/statusTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/status_off"
+                            android:textColor="@color/skoda_emerald"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/statusSubtitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="@string/status_off_detail"
+                            android:textColor="@color/skoda_stone_grey"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:text="@string/privacy_note"
+                    android:textColor="@color/skoda_stone_grey"
+                    android:textSize="14sp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnShareLocation"
+                    style="@style/ShareLoc.PrimaryButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:text="@string/share_location" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnStopSharing"
+                    style="@style/ShareLoc.SecondaryButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:enabled="false"
+                    android:text="@string/stop_sharing" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/sharePanel"
+            style="@style/ShareLoc.Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tracking_link"
+                    android:textColor="@color/skoda_emerald"
+                    android:textSize="21sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/qrImage"
+                    android:layout_width="280dp"
+                    android:layout_height="280dp"
+                    android:layout_marginTop="18dp"
+                    android:background="@color/white"
+                    android:contentDescription="@string/qr_description"
+                    android:padding="10dp" />
+
+                <TextView
+                    android:id="@+id/trackingLinkText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:gravity="center"
+                    android:textColor="@color/skoda_dark_grey"
+                    android:textIsSelectable="true"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSms"
+                        style="@style/ShareLoc.SecondaryButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/send_sms" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnShareApp"
+                        style="@style/ShareLoc.SecondaryButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/share_app" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnCopy"
+                        style="@style/ShareLoc.SecondaryButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/copy_link" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnOpenLink"
+                        style="@style/ShareLoc.SecondaryButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/open_link" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/ShareLoc.Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="24dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/live_data"
+                    android:textColor="@color/skoda_emerald"
+                    android:textSize="21sp"
+                    android:textStyle="bold" />
+
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:text="@string/latitude" android:textColor="@color/skoda_stone_grey" />
+                <TextView android:id="@+id/valueLatitude" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/not_available" android:textColor="@color/skoda_dark_grey" android:textSize="20sp" android:textStyle="bold" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="@string/longitude" android:textColor="@color/skoda_stone_grey" />
+                <TextView android:id="@+id/valueLongitude" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/not_available" android:textColor="@color/skoda_dark_grey" android:textSize="20sp" android:textStyle="bold" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="@string/speed" android:textColor="@color/skoda_stone_grey" />
+                <TextView android:id="@+id/valueSpeed" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/not_available" android:textColor="@color/skoda_dark_grey" android:textSize="20sp" android:textStyle="bold" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="@string/accuracy" android:textColor="@color/skoda_stone_grey" />
+                <TextView android:id="@+id/valueAccuracy" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/not_available" android:textColor="@color/skoda_dark_grey" android:textSize="20sp" android:textStyle="bold" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="@string/source" android:textColor="@color/skoda_stone_grey" />
+                <TextView android:id="@+id/valueSource" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/not_available" android:textColor="@color/skoda_dark_grey" android:textSize="18sp" android:textStyle="bold" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="@string/last_upload" android:textColor="@color/skoda_stone_grey" />
+                <TextView android:id="@+id/valueLastUpload" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/not_available" android:textColor="@color/skoda_dark_grey" android:textSize="18sp" android:textStyle="bold" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

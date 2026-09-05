@@ -1,0 +1,12 @@
+# Copy this file to shareloc.properties and fill in the values printed by
+# the ANTools Live Tracker server deployment script.
+
+# Local emulator development:
+# apiBaseUrl=http://10.0.2.2:8080
+# publicShareUrl=http://10.0.2.2:8080/track/YOUR_PUBLIC_SHARE_ID
+
+# Google Cloud Run / custom domain example:
+apiBaseUrl=https://YOUR-CLOUD-RUN-SERVICE.run.app
+uploadToken=YOUR_DEVICE_UPLOAD_TOKEN
+vehicleId=IVI_001
+publicShareUrl=https://track.antools.tech/track/YOUR_PUBLIC_SHARE_ID

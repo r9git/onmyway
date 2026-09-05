@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ShareLoc</string>
+    <string name="app_tagline">Live vehicle location</string>
+    <string name="privacy_note">Anyone with the link can view the vehicle position while sharing is active.</string>
+    <string name="share_location">Share my location</string>
+    <string name="stop_sharing">Stop sharing</string>
+    <string name="send_sms">Send by SMS</string>
+    <string name="share_app">Share with app</string>
+    <string name="copy_link">Copy link</string>
+    <string name="open_link">Open map</string>
+    <string name="tracking_link">Tracking link</string>
+    <string name="live_data">Live data</string>
+    <string name="status_off">Sharing is off</string>
+    <string name="status_off_detail">Press Share my location to start.</string>
+    <string name="status_starting">Starting location sharing…</string>
+    <string name="status_live">Location sharing is active</string>
+    <string name="status_waiting">Waiting for a GNSS fix…</string>
+    <string name="status_error_title">Sharing needs attention</string>
+    <string name="location_permission_required">Precise location permission is required.</string>
+    <string name="notification_title">ShareLoc is sharing location</string>
+    <string name="notification_text">Vehicle position is being sent to the live map.</string>
+    <string name="notification_channel">Live location sharing</string>
+    <string name="notification_stop">Stop</string>
+    <string name="share_message">Follow this vehicle\'s live location: %1$s</string>
+    <string name="link_copied">Tracking link copied</string>
+    <string name="no_app_available">No compatible app is available.</string>
+    <string name="configuration_missing">Server configuration is incomplete. Edit shareloc.properties and rebuild.</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="speed">Speed</string>
+    <string name="accuracy">Accuracy</string>
+    <string name="source">Source</string>
+    <string name="last_upload">Last upload</string>
+    <string name="not_available">—</string>
+    <string name="qr_description">QR code containing the public live-tracking link</string>
+    <string name="brand_footer">ANTools demo</string>
+</resources>
