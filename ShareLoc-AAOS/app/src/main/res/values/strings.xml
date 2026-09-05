@@ -30,6 +30,11 @@
     <string name="longitude">Longitude</string>
     <string name="speed">Speed</string>
     <string name="accuracy">Accuracy</string>
+    <string name="heading">Heading</string>
+    <string name="speed_unit">km/h</string>
+    <string name="current_speed">Current speed</string>
+    <string name="vehicle_cursor_description">Vehicle heading cursor</string>
+    <string name="scan_to_follow">Scan with a phone to follow the vehicle live</string>
     <string name="source">Source</string>
     <string name="last_upload">Last upload</string>
     <string name="not_available">—</string>

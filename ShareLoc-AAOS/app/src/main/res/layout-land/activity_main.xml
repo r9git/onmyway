@@ -10,18 +10,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="32dp">
+        android:paddingStart="36dp"
+        android:paddingTop="24dp"
+        android:paddingEnd="36dp"
+        android:paddingBottom="28dp">
 
+        <!-- Header -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingBottom="22dp">
+            android:paddingBottom="20dp">
 
             <ImageView
-                android:layout_width="58dp"
-                android:layout_height="58dp"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
                 android:contentDescription="@null"
                 android:src="@drawable/ic_shareloc_mark" />
 
@@ -35,24 +39,54 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:letterSpacing="0.04"
                     android:text="@string/app_name"
-                    android:textColor="@color/skoda_emerald"
-                    android:textSize="36sp"
+                    android:textColor="@color/white"
+                    android:textSize="34sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/app_tagline"
-                    android:textColor="@color/skoda_stone_grey"
-                    android:textSize="17sp" />
+                    android:textColor="@color/skoda_on_dark_muted"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_status_pill"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="14dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="8dp">
+
+                <View
+                    android:id="@+id/statusDot"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:background="@drawable/bg_status_dot_off" />
+
+                <TextView
+                    android:id="@+id/statusTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/status_off"
+                    android:textColor="@color/skoda_on_dark"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
                 android:text="@string/brand_footer"
-                android:textColor="@color/skoda_stone_grey"
+                android:textColor="@color/skoda_on_dark_muted"
                 android:textSize="13sp" />
         </LinearLayout>
 
@@ -62,13 +96,15 @@
             android:baselineAligned="false"
             android:orientation="horizontal">
 
+            <!-- Left column -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
-                android:layout_weight="1"
+                android:layout_weight="1.15"
                 android:orientation="vertical">
 
+                <!-- Hero: cursor + status + speed -->
                 <com.google.android.material.card.MaterialCardView
                     style="@style/ShareLoc.Card"
                     android:layout_width="match_parent"
@@ -86,35 +122,68 @@
                             android:gravity="center_vertical"
                             android:orientation="horizontal">
 
-                            <View
-                                android:id="@+id/statusDot"
-                                android:layout_width="16dp"
-                                android:layout_height="16dp"
-                                android:background="@drawable/bg_status_dot_off" />
+                            <FrameLayout
+                                android:layout_width="132dp"
+                                android:layout_height="132dp"
+                                android:background="@drawable/bg_cursor_ring">
+
+                                <ImageView
+                                    android:id="@+id/vehicleCursor"
+                                    android:layout_width="96dp"
+                                    android:layout_height="96dp"
+                                    android:layout_gravity="center"
+                                    android:alpha="0.45"
+                                    android:contentDescription="@string/vehicle_cursor_description"
+                                    android:src="@drawable/ic_vehicle_cursor" />
+                            </FrameLayout>
 
                             <LinearLayout
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="14dp"
+                                android:layout_marginStart="22dp"
                                 android:layout_weight="1"
                                 android:orientation="vertical">
 
                                 <TextView
-                                    android:id="@+id/statusTitle"
+                                    style="@style/ShareLoc.Eyebrow"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/current_speed" />
+
+                                <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/status_off"
-                                    android:textColor="@color/skoda_emerald"
-                                    android:textSize="22sp"
-                                    android:textStyle="bold" />
+                                    android:gravity="bottom"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/valueSpeed"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:includeFontPadding="false"
+                                        android:text="@string/not_available"
+                                        android:textColor="@color/white"
+                                        android:textSize="64sp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="8dp"
+                                        android:layout_marginBottom="8dp"
+                                        android:text="@string/speed_unit"
+                                        android:textColor="@color/skoda_electric"
+                                        android:textSize="20sp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
 
                                 <TextView
                                     android:id="@+id/statusSubtitle"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="4dp"
+                                    android:layout_marginTop="6dp"
                                     android:text="@string/status_off_detail"
-                                    android:textColor="@color/skoda_stone_grey"
+                                    android:textColor="@color/skoda_on_dark_muted"
                                     android:textSize="15sp" />
                             </LinearLayout>
                         </LinearLayout>
@@ -124,65 +193,139 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="18dp"
                             android:text="@string/privacy_note"
-                            android:textColor="@color/skoda_stone_grey"
-                            android:textSize="14sp" />
+                            android:textColor="@color/skoda_on_dark_muted"
+                            android:textSize="13sp" />
 
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnShareLocation"
-                            style="@style/ShareLoc.PrimaryButton"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="22dp"
-                            android:text="@string/share_location" />
+                            android:layout_marginTop="18dp"
+                            android:orientation="horizontal">
 
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnStopSharing"
-                            style="@style/ShareLoc.SecondaryButton"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
-                            android:enabled="false"
-                            android:text="@string/stop_sharing" />
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnShareLocation"
+                                style="@style/ShareLoc.PrimaryButton"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="6dp"
+                                android:layout_weight="1.4"
+                                android:text="@string/share_location" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnStopSharing"
+                                style="@style/ShareLoc.SecondaryButton"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="6dp"
+                                android:layout_weight="1"
+                                android:enabled="false"
+                                android:minHeight="64dp"
+                                android:text="@string/stop_sharing" />
+                        </LinearLayout>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
+                <!-- Live data grid -->
                 <com.google.android.material.card.MaterialCardView
                     style="@style/ShareLoc.Card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
-                    android:layout_marginBottom="24dp">
+                    android:layout_marginTop="16dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:padding="24dp">
+                        android:padding="20dp">
 
                         <TextView
+                            style="@style/ShareLoc.Eyebrow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/live_data" />
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/live_data"
-                            android:textColor="@color/skoda_emerald"
-                            android:textSize="21sp"
-                            android:textStyle="bold" />
+                            android:layout_marginTop="12dp"
+                            android:baselineAligned="false"
+                            android:orientation="horizontal">
 
-                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:text="@string/latitude" android:textColor="@color/skoda_stone_grey" />
-                        <TextView android:id="@+id/valueLatitude" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/not_available" android:textColor="@color/skoda_dark_grey" android:textSize="20sp" android:textStyle="bold" />
-                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:text="@string/longitude" android:textColor="@color/skoda_stone_grey" />
-                        <TextView android:id="@+id/valueLongitude" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/not_available" android:textColor="@color/skoda_dark_grey" android:textSize="20sp" android:textStyle="bold" />
-                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:text="@string/speed" android:textColor="@color/skoda_stone_grey" />
-                        <TextView android:id="@+id/valueSpeed" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/not_available" android:textColor="@color/skoda_dark_grey" android:textSize="20sp" android:textStyle="bold" />
-                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:text="@string/accuracy" android:textColor="@color/skoda_stone_grey" />
-                        <TextView android:id="@+id/valueAccuracy" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/not_available" android:textColor="@color/skoda_dark_grey" android:textSize="20sp" android:textStyle="bold" />
-                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:text="@string/source" android:textColor="@color/skoda_stone_grey" />
-                        <TextView android:id="@+id/valueSource" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/not_available" android:textColor="@color/skoda_dark_grey" android:textSize="18sp" android:textStyle="bold" />
-                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:text="@string/last_upload" android:textColor="@color/skoda_stone_grey" />
-                        <TextView android:id="@+id/valueLastUpload" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/not_available" android:textColor="@color/skoda_dark_grey" android:textSize="18sp" android:textStyle="bold" />
+                            <LinearLayout
+                                style="@style/ShareLoc.MetricTile"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="5dp"
+                                android:layout_weight="1">
+                                <TextView style="@style/ShareLoc.MetricLabel" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/latitude" />
+                                <TextView android:id="@+id/valueLatitude" style="@style/ShareLoc.MetricValue" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/not_available" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/ShareLoc.MetricTile"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginEnd="5dp"
+                                android:layout_weight="1">
+                                <TextView style="@style/ShareLoc.MetricLabel" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/longitude" />
+                                <TextView android:id="@+id/valueLongitude" style="@style/ShareLoc.MetricValue" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/not_available" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/ShareLoc.MetricTile"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:layout_weight="0.8">
+                                <TextView style="@style/ShareLoc.MetricLabel" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/heading" />
+                                <TextView android:id="@+id/valueHeading" style="@style/ShareLoc.MetricValue" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/not_available" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:baselineAligned="false"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                style="@style/ShareLoc.MetricTile"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="5dp"
+                                android:layout_weight="0.8">
+                                <TextView style="@style/ShareLoc.MetricLabel" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/accuracy" />
+                                <TextView android:id="@+id/valueAccuracy" style="@style/ShareLoc.MetricValue" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/not_available" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/ShareLoc.MetricTile"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginEnd="5dp"
+                                android:layout_weight="1.2">
+                                <TextView style="@style/ShareLoc.MetricLabel" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/source" />
+                                <TextView android:id="@+id/valueSource" style="@style/ShareLoc.MetricValue" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/not_available" android:textSize="15sp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                style="@style/ShareLoc.MetricTile"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:layout_weight="0.8">
+                                <TextView style="@style/ShareLoc.MetricLabel" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/last_upload" />
+                                <TextView android:id="@+id/valueLastUpload" style="@style/ShareLoc.MetricValue" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/not_available" />
+                            </LinearLayout>
+                        </LinearLayout>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
 
+            <!-- Right column: tracking link -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/sharePanel"
                 style="@style/ShareLoc.Card"
@@ -200,32 +343,39 @@
                     android:padding="24dp">
 
                     <TextView
+                        style="@style/ShareLoc.Eyebrow"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/tracking_link"
-                        android:textColor="@color/skoda_emerald"
-                        android:textSize="21sp"
-                        android:textStyle="bold" />
+                        android:text="@string/tracking_link" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/scan_to_follow"
+                        android:textColor="@color/skoda_on_dark"
+                        android:textSize="16sp" />
 
                     <ImageView
                         android:id="@+id/qrImage"
-                        android:layout_width="250dp"
-                        android:layout_height="250dp"
-                        android:layout_marginTop="14dp"
-                        android:background="@color/white"
+                        android:layout_width="236dp"
+                        android:layout_height="236dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/bg_qr_frame"
                         android:contentDescription="@string/qr_description"
-                        android:padding="8dp" />
+                        android:padding="14dp" />
 
                     <TextView
                         android:id="@+id/trackingLinkText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
+                        android:fontFamily="monospace"
                         android:gravity="center"
                         android:maxLines="3"
-                        android:textColor="@color/skoda_dark_grey"
+                        android:textColor="@color/skoda_on_dark_muted"
                         android:textIsSelectable="true"
-                        android:textSize="13sp" />
+                        android:textSize="12sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -269,11 +419,13 @@
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnOpenLink"
-                            style="@style/ShareLoc.SecondaryButton"
+                            style="@style/ShareLoc.PrimaryButton"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
                             android:layout_weight="1"
+                            android:minHeight="54dp"
+                            android:textSize="15sp"
                             android:text="@string/open_link" />
                     </LinearLayout>
                 </LinearLayout>
