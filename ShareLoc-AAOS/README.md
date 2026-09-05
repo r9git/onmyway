@@ -108,6 +108,20 @@ The emulator command uses longitude first, then latitude.
 
 5. Open the QR/public link in a browser. The marker should update in approximately one second.
 
+## Optional: navigation info from the Škoda navi (emulator/dev builds)
+
+When the app holds `android.permission.READ_LOGS` it tails logcat for the CARIAD navigation app
+(`technology.cariad.navi.oi.skoda`) and forwards destination, ETA, remaining distance, battery state
+of charge and the planned charging stop with every position. The spectator map then shows an arrival
+card and the remaining route. `READ_LOGS` is a development permission, so on the emulator:
+
+```powershell
+& $adb shell pm grant tech.antools.shareloc.debug android.permission.READ_LOGS
+& $adb shell am force-stop tech.antools.shareloc.debug
+```
+
+Without the grant the app behaves exactly as before. Start a route in the navi to see the data.
+
 ## Server request produced by the app
 
 ```json
@@ -119,9 +133,20 @@ The emulator command uses longitude first, then latitude.
   "bearing": 182.9,
   "accuracyMeters": 3.8,
   "source": "android-location:gps",
-  "timestamp": 1785911234567
+  "timestamp": 1785911234567,
+  "navigation": {
+    "destination": { "name": "PowerDot Biedronka Bogatynia Dworcowa", "address": "ulica Dworcowa 2, 59-920 Bogatynia (POL)", "lat": 50.903764, "lon": 14.957664 },
+    "etaEpochMs": 1788657123000,
+    "remainingMeters": 75572,
+    "remainingSeconds": 6080,
+    "socPercent": 76,
+    "arrivalSocPercent": 67,
+    "chargingStop": { "name": "ČEZ Harrachov OC Mamut", "distanceMeters": 25048, "chargingSeconds": 300, "lat": 50.780821, "lon": 15.420372 }
+  }
 }
 ```
+
+`navigation` is only present when the guidance reader is active (see above); `null` means no active route.
 
 Header:
 
