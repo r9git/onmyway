@@ -60,7 +60,7 @@ class NaviGuidanceReader(private val context: Context, private val onChanged: (N
                     .redirectErrorStream(true)
                     .start()
                 process = proc
-                BufferedReader(InputStreamReader(proc.inputStream), 1 shl 16).use { reader ->
+                BufferedReader(InputStreamReader(proc.inputStream, Charsets.UTF_8), 1 shl 16).use { reader ->
                     while (running) {
                         val line = reader.readLine() ?: break
                         if (line.contains(NAVI_PACKAGE)) handleLine(line)
@@ -205,7 +205,8 @@ class NaviGuidanceReader(private val context: Context, private val onChanged: (N
     companion object {
         private const val TAG = "NaviGuidanceReader"
         private const val NAVI_PACKAGE = "technology.cariad.navi.oi.skoda"
-        private const val GUIDANCE_TIMEOUT_MS = 90_000L
+        // The navi logs route parameters about once per second while guidance is active.
+        private const val GUIDANCE_TIMEOUT_MS = 30_000L
         private val LAT_RE = Regex("latitude=(-?\\d+(?:\\.\\d+)?)")
         private val LON_RE = Regex("longitude=(-?\\d+(?:\\.\\d+)?)")
         private val POI_NAME_RE = Regex("poiName=([^,)]*)")
