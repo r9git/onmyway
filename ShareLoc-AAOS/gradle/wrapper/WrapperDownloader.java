@@ -6,7 +6,7 @@ import java.security.MessageDigest;
 import java.util.HexFormat;
 
 public final class WrapperDownloader {
-    private static final String URL = "https://services.gradle.org/distributions/gradle-8.11.1-wrapper.jar";
+    private static final String URL = "https://raw.githubusercontent.com/gradle/gradle/v8.11.1/gradle/wrapper/gradle-wrapper.jar";
     private static final String SHA256 = "2db75c40782f5e8ba1fc278a5574bab070adccb2d21ca5a6e5ed840888448046";
 
     public static void main(String[] args) throws Exception {
