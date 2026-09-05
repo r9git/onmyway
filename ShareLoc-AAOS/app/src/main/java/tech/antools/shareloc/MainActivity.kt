@@ -128,7 +128,7 @@ class MainActivity : AppCompatActivity() {
             state.tracking && state.lastUploadAt != null -> {
                 binding.statusDot.background = drawable(R.drawable.bg_status_dot_live)
                 binding.statusTitle.setText(R.string.status_live)
-                binding.statusSubtitle.text = state.statusMessage ?: "Connected to server"
+                binding.statusSubtitle.text = navigationSummary(state) ?: state.statusMessage ?: "Connected to server"
             }
             state.tracking -> {
                 binding.statusDot.background = drawable(R.drawable.bg_status_dot_live)
@@ -220,6 +220,14 @@ class MainActivity : AppCompatActivity() {
         !BuildConfig.UPLOAD_TOKEN.startsWith("CHANGE_ME") &&
             !BuildConfig.PUBLIC_SHARE_URL.contains("CHANGE_ME") &&
             BuildConfig.API_BASE_URL.startsWith("http")
+
+    private fun navigationSummary(state: TrackingSnapshot): String? {
+        val destination = state.destinationName ?: return null
+        val parts = mutableListOf("→ $destination")
+        state.etaEpochMs?.let { parts += getString(R.string.arriving_at, DateFormat.getTimeInstance(DateFormat.SHORT).format(Date(it))) }
+        state.remainingMeters?.let { parts += if (it < 1000) "${it.toInt()} m" else String.format(Locale.US, "%.0f km", it / 1000) }
+        return parts.joinToString(" · ")
+    }
 
     private fun compassPoint(bearing: Double): String {
         val points = arrayOf("N", "NE", "E", "SE", "S", "SW", "W", "NW")

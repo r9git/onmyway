@@ -20,6 +20,7 @@ import androidx.core.content.ContextCompat
 class VehicleTrackingService : Service(), LocationListener {
     private lateinit var locationManager: LocationManager
     private lateinit var uploader: TelemetryUploader
+    private lateinit var guidanceReader: NaviGuidanceReader
     private var receivingUpdates = false
     private var lastUploadElapsedMs = 0L
 
@@ -29,6 +30,7 @@ class VehicleTrackingService : Service(), LocationListener {
         startAsForeground()
         locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
         uploader = TelemetryUploader(this)
+        guidanceReader = NaviGuidanceReader(this) { info -> TrackingStateStore.setNavigation(this, info) }
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -65,6 +67,7 @@ class VehicleTrackingService : Service(), LocationListener {
                 locationManager.getLastKnownLocation(provider)?.let(::acceptLocation)
             }
             receivingUpdates = true
+            guidanceReader.start()
             TrackingStateStore.setTracking(this, true, getString(R.string.status_waiting))
         } catch (e: SecurityException) {
             TrackingStateStore.setError(this, e.message ?: getString(R.string.location_permission_required))
@@ -74,6 +77,7 @@ class VehicleTrackingService : Service(), LocationListener {
 
     private fun stopTracking() {
         if (::locationManager.isInitialized) runCatching { locationManager.removeUpdates(this) }
+        if (::guidanceReader.isInitialized) guidanceReader.stop()
         receivingUpdates = false
         TrackingStateStore.setTracking(this, false, getString(R.string.status_off_detail))
     }
@@ -95,7 +99,10 @@ class VehicleTrackingService : Service(), LocationListener {
         if (nowElapsed - lastUploadElapsedMs < 950L) return
         lastUploadElapsedMs = nowElapsed
 
-        val payload = TelemetryPayload.fromLocation(location)
+        val payload = TelemetryPayload.fromLocation(location).copy(
+            navigation = guidanceReader.current,
+            navigationKnown = guidanceReader.isActive,
+        )
         TrackingStateStore.setLocation(this, payload)
         uploader.enqueue(payload)
     }

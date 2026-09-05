@@ -13,6 +13,10 @@ data class TelemetryPayload(
     val accuracyMeters: Double?,
     val source: String,
     val timestamp: Long,
+    /** Route guidance from the vehicle navi; null when no route is active. */
+    val navigation: NavigationInfo? = null,
+    /** True when a guidance reader is running, so a null [navigation] means "no active route". */
+    val navigationKnown: Boolean = false,
 ) {
     fun toJson(): String = JSONObject().apply {
         put("vehicleId", vehicleId)
@@ -23,6 +27,7 @@ data class TelemetryPayload(
         put("accuracyMeters", accuracyMeters ?: JSONObject.NULL)
         put("source", source)
         put("timestamp", timestamp)
+        if (navigationKnown) put("navigation", navigation?.toJson() ?: JSONObject.NULL)
     }.toString()
 
     companion object {
