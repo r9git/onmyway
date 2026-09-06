@@ -128,7 +128,7 @@ class MainActivity : AppCompatActivity() {
             state.tracking && state.lastUploadAt != null -> {
                 binding.statusDot.background = drawable(R.drawable.bg_status_dot_live)
                 binding.statusTitle.setText(R.string.status_live)
-                binding.statusSubtitle.text = state.statusMessage ?: "Connected to server"
+                binding.statusSubtitle.text = navigationSummary(state) ?: state.statusMessage ?: "Connected to server"
             }
             state.tracking -> {
                 binding.statusDot.background = drawable(R.drawable.bg_status_dot_live)
@@ -144,7 +144,12 @@ class MainActivity : AppCompatActivity() {
 
         binding.valueLatitude.text = state.latitude?.let { String.format(Locale.US, "%.7f", it) } ?: getString(R.string.not_available)
         binding.valueLongitude.text = state.longitude?.let { String.format(Locale.US, "%.7f", it) } ?: getString(R.string.not_available)
-        binding.valueSpeed.text = state.speedKmh?.let { String.format(Locale.US, "%.1f km/h", it) } ?: getString(R.string.not_available)
+        binding.valueSpeed.text = state.speedKmh?.let { String.format(Locale.US, "%.0f", it) } ?: getString(R.string.not_available)
+        binding.valueHeading.text = state.bearing?.let { String.format(Locale.US, "%.0f° %s", it, compassPoint(it)) } ?: getString(R.string.not_available)
+        state.bearing?.let { bearing ->
+            binding.vehicleCursor.animate().rotation(bearing.toFloat()).setDuration(400).start()
+        }
+        binding.vehicleCursor.alpha = if (state.tracking) 1f else 0.45f
         binding.valueAccuracy.text = state.accuracyMeters?.let { String.format(Locale.US, "± %.1f m", it) } ?: getString(R.string.not_available)
         binding.valueSource.text = state.source ?: getString(R.string.not_available)
         binding.valueLastUpload.text = state.lastUploadAt?.let {
@@ -215,6 +220,20 @@ class MainActivity : AppCompatActivity() {
         !BuildConfig.UPLOAD_TOKEN.startsWith("CHANGE_ME") &&
             !BuildConfig.PUBLIC_SHARE_URL.contains("CHANGE_ME") &&
             BuildConfig.API_BASE_URL.startsWith("http")
+
+    private fun navigationSummary(state: TrackingSnapshot): String? {
+        val destination = state.destinationName ?: return null
+        val parts = mutableListOf("→ $destination")
+        state.etaEpochMs?.let { parts += getString(R.string.arriving_at, DateFormat.getTimeInstance(DateFormat.SHORT).format(Date(it))) }
+        state.remainingMeters?.let { parts += if (it < 1000) "${it.toInt()} m" else String.format(Locale.US, "%.0f km", it / 1000) }
+        return parts.joinToString(" · ")
+    }
+
+    private fun compassPoint(bearing: Double): String {
+        val points = arrayOf("N", "NE", "E", "SE", "S", "SW", "W", "NW")
+        val index = Math.floorMod(Math.round(bearing / 45.0).toInt(), points.size)
+        return points[index]
+    }
 
     private fun drawable(id: Int): Drawable? = ContextCompat.getDrawable(this, id)
 }

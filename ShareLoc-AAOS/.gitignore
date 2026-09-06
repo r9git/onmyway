@@ -2,3 +2,4 @@
 **/build/
 local.properties
 shareloc.properties
+gradle/wrapper/gradle-wrapper.jar

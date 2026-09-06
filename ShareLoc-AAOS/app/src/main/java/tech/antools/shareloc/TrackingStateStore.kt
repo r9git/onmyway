@@ -8,11 +8,15 @@ data class TrackingSnapshot(
     val latitude: Double?,
     val longitude: Double?,
     val speedKmh: Double?,
+    val bearing: Double?,
     val accuracyMeters: Double?,
     val source: String?,
     val lastUploadAt: Long?,
     val statusMessage: String?,
     val error: Boolean,
+    val destinationName: String? = null,
+    val etaEpochMs: Long? = null,
+    val remainingMeters: Double? = null,
 )
 
 object TrackingStateStore {
@@ -34,10 +38,21 @@ object TrackingStateStore {
             .putLong("lonBits", payload.longitude.toBits())
             .apply {
                 payload.speedKmh?.let { putLong("speedBits", it.toBits()) } ?: remove("speedBits")
+                payload.bearing?.let { putLong("bearingBits", it.toBits()) } ?: remove("bearingBits")
                 payload.accuracyMeters?.let { putLong("accuracyBits", it.toBits()) } ?: remove("accuracyBits")
             }
             .putString("source", payload.source)
             .apply()
+        notify(context)
+    }
+
+    fun setNavigation(context: Context, info: NavigationInfo?) {
+        context.getSharedPreferences(PREFS, Context.MODE_PRIVATE).edit().apply {
+            val name = info?.destination?.name
+            if (name != null) putString("navDestination", name) else remove("navDestination")
+            info?.etaEpochMs?.let { putLong("navEta", it) } ?: remove("navEta")
+            info?.remainingMeters?.let { putLong("navRemainingBits", it.toBits()) } ?: remove("navRemainingBits")
+        }.apply()
         notify(context)
     }
 
@@ -65,11 +80,15 @@ object TrackingStateStore {
             latitude = p.getBitsOrNull("latBits"),
             longitude = p.getBitsOrNull("lonBits"),
             speedKmh = p.getBitsOrNull("speedBits"),
+            bearing = p.getBitsOrNull("bearingBits"),
             accuracyMeters = p.getBitsOrNull("accuracyBits"),
             source = p.getString("source", null),
             lastUploadAt = if (p.contains("lastUploadAt")) p.getLong("lastUploadAt", 0L) else null,
             statusMessage = p.getString("statusMessage", null),
             error = p.getBoolean("error", false),
+            destinationName = p.getString("navDestination", null),
+            etaEpochMs = if (p.contains("navEta")) p.getLong("navEta", 0L) else null,
+            remainingMeters = p.getBitsOrNull("navRemainingBits"),
         )
     }
 
