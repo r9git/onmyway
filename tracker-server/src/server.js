@@ -226,7 +226,8 @@ const server = createServer(async (req, res) => {
   try {
     if (req.method === "POST" && path === "/api/v1/position") return await handlePosition(req, res);
     if (req.method === "GET" || req.method === "HEAD") {
-      if (path === "/healthz") return sendJson(res, 200, { ok: true, vehicles: store.vehicles.size });
+      // Note: Google Frontend answers /healthz itself on run.app domains, so use a namespaced path.
+      if (path === "/api/v1/health" || path === "/healthz") return sendJson(res, 200, { ok: true, vehicles: store.vehicles.size });
       let match = path.match(/^\/api\/v1\/track\/([^/]+)\/state$/);
       if (match) return handleState(res, decodeURIComponent(match[1]));
       match = path.match(/^\/api\/v1\/track\/([^/]+)\/stream$/);

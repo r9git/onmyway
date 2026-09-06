@@ -20,6 +20,8 @@ function newVehicle(vehicleId) {
     latest: null,
     trail: [],
     trip: null,
+    navigation: null,
+    route: null,
     enrichment: {
       speedLimitKmh: null,
       speedLimitUnlimited: false,

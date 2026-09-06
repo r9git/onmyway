@@ -11,7 +11,7 @@ HERE data (speed limit, road name, address, route to destination) and serves the
 | `GET` | `/track/<shareId>` | Spectator page (Škoda-styled map) |
 | `GET` | `/api/v1/track/<shareId>/state` | Full snapshot incl. trail and route (JSON) |
 | `GET` | `/api/v1/track/<shareId>/stream` | Server-sent events: `update`, `route`, `trip-reset` |
-| `GET` | `/healthz` | Health check |
+| `GET` | `/api/v1/health` | Health check (`/healthz` is intercepted by Google Frontend on `run.app`) |
 
 The upload payload is the one documented in `ShareLoc-AAOS/README.md`; an optional `navigation`
 object (destination, ETA, remaining distance/time, SoC, charging stop) is accepted as well.
